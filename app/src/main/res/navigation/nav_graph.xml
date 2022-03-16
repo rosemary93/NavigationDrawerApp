@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.navigationdrawerapp.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_itemDetailsFragment"
+            app:destination="@id/itemDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.navigationdrawerapp.ProfileFragment"
@@ -33,4 +37,9 @@
         android:name="com.example.navigationdrawerapp.RegistrationFragment"
         android:label="fragment_registration"
         tools:layout="@layout/fragment_registration" />
+    <fragment
+        android:id="@+id/itemDetailsFragment"
+        android:name="com.example.navigationdrawerapp.ItemDetailsFragment"
+        android:label="fragment_item_details"
+        tools:layout="@layout/fragment_item_details" />
 </navigation>
