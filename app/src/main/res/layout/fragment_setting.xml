@@ -11,7 +11,7 @@
 
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textView_items_count"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Number of items in Home"
@@ -67,7 +67,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -103,7 +103,7 @@
     </RadioGroup>
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView_editInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
