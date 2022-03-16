@@ -47,4 +47,9 @@
             android:defaultValue="0"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/exitFragment"
+        android:name="com.example.navigationdrawerapp.ExitFragment"
+        android:label="fragment_exit"
+        tools:layout="@layout/fragment_exit" />
 </navigation>

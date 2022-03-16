@@ -40,16 +40,7 @@ class MainActivity : AppCompatActivity() {
             .setupWithNavController(navController)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.title_exit->{
-                moveTaskToBack(true)
-                exitProcess(-1)
 
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return true
