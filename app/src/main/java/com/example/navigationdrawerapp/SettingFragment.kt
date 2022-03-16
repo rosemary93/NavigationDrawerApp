@@ -59,7 +59,7 @@ class SettingFragment : Fragment() {
         setItemsNumberButtonsListeners()
         setThemeButtonsListeners()
         binding.buttonEditInfo.setOnClickListener {
-           // findNavController().
+            findNavController().navigate(R.id.action_settingFragment_to_registrationFragment)
         }
     }
 
