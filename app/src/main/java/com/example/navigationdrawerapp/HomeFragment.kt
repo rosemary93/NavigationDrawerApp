@@ -99,7 +99,13 @@ class HomeFragment : Fragment() {
     }
 
     override fun onResume() {
+        for (i in 0..5)
+        {
+            if (i<appSharedViewModel.numberOfItems)
+                continue
+            layoutList[i].visibility=View.GONE
 
+        }
         super.onResume()
     }
 

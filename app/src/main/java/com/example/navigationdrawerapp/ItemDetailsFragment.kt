@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentItemDetailsBinding
 
 
@@ -30,6 +31,10 @@ class ItemDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        Glide.with(requireContext())
+            .load(appSharedViewModel.itemList[index].imageId)
+            .circleCrop()
+            .into(binding.imageViewItem)
         binding.textViewTitle.text=appSharedViewModel.itemList[index].title
         binding.textViewDescription.text=appSharedViewModel.itemList[index].description
         binding.imageViewItem.setImageResource(appSharedViewModel.itemList[index].imageId)
