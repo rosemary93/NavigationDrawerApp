@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentHomeBinding
 
@@ -36,6 +37,9 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createViewsArrays()
@@ -46,7 +50,21 @@ class HomeFragment : Fragment() {
                 .circleCrop()
                 .into(imageViewList[i])
         }
+
+        for (i in 0..5)
+        {
+            imageViewList[i].setOnClickListener {
+                val action=HomeFragmentDirections.actionHomeFragmentToItemDetailsFragment(i)
+                findNavController().navigate(action)
+            }
+        }
+
+
+
     }
+
+
+
 
     fun createViewsArrays(){
         createLayoutArray()
@@ -81,11 +99,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onResume() {
+
         super.onResume()
-        for (i in appSharedViewModel.numberOfItems ..5)
-        {
-            layoutList[i].visibility=View.GONE
-        }
     }
 
 
