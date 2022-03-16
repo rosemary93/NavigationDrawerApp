@@ -19,6 +19,7 @@
         android:textStyle="bold" />
 
     <RadioGroup
+        android:id="@+id/radioGroup_item_numbers"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -66,6 +67,13 @@
             android:text="6" />
     </RadioGroup>
 
+    <Button
+        android:id="@+id/button_set_item_numbers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="Button" />
+
     <TextView
         android:id="@+id/textView_theme"
         android:layout_width="match_parent"
@@ -102,6 +110,13 @@
             android:text="purple" />
     </RadioGroup>
 
+    <Button
+        android:id="@+id/button_set_theme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10sp"
+        android:text="Button" />
+
     <TextView
         android:id="@+id/textView_editInfo"
         android:layout_width="match_parent"
@@ -115,7 +130,7 @@
         android:id="@+id/button_editInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_margin="10sp"
         android:text="edit" />
 
 </LinearLayout>

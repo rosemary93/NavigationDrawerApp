@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.RadioButton
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawerapp.databinding.FragmentSettingBinding
@@ -14,7 +16,7 @@ import com.example.navigationdrawerapp.databinding.FragmentSettingBinding
 class SettingFragment : Fragment() {
     lateinit var binding: FragmentSettingBinding
     private val appSharedViewModel: SharedViewModelApp by activityViewModels()
-    private val itemsNumberButtonList = ArrayList<RadioButton>()
+    //private val itemsNumberButtonList = ArrayList<Button>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -32,7 +34,7 @@ class SettingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        createButtonsArrays()
+        //createItemNumbersButtonArray()
         initViews()
         setButtonsListeners()
     }
@@ -40,49 +42,71 @@ class SettingFragment : Fragment() {
     private fun initViews() {
         when (appSharedViewModel.colorTheme) {
             ThemeColor.Black -> {
-                binding.radioButtonBlack.isChecked
+                binding.radioButtonBlack.isChecked = true
             }
             ThemeColor.Red -> {
-                binding.radioButtonRed.isChecked
+                binding.radioButtonRed.isChecked = true
             }
             else -> {
-                binding.radioButtonPurple.isChecked
+                binding.radioButtonPurple.isChecked = true
             }
         }
-
-        for (i in 0 until 6) {
-            if (appSharedViewModel.numberOfItems - 1 == i)
-                itemsNumberButtonList[i].isChecked = true
+        when (appSharedViewModel.numberOfItems) {
+            1 -> binding.radioButton1.isChecked = true
+            2 -> binding.radioButton2.isChecked = true
+            3 -> binding.radioButton3.isChecked = true
+            4 -> binding.radioButton4.isChecked = true
+            5 -> binding.radioButton5.isChecked = true
+            else -> {
+                binding.radioButton6.isChecked = true
+            }
         }
     }
-    fun setButtonsListeners(){
-        setItemsNumberButtonsListeners()
-        setThemeButtonsListeners()
+
+    private fun setButtonsListeners() {
+
+        binding.buttonSetItemNumbers.setOnClickListener {
+            if (binding.radioButton1.isChecked) {
+                appSharedViewModel.numberOfItems = 1
+            } else if (binding.radioButton2.isChecked) {
+                appSharedViewModel.numberOfItems = 2
+            } else if (binding.radioButton3.isChecked) {
+                appSharedViewModel.numberOfItems = 3
+            } else if (binding.radioButton4.isChecked) {
+                appSharedViewModel.numberOfItems = 4
+            } else if (binding.radioButton5.isChecked) {
+                appSharedViewModel.numberOfItems = 5
+            } else {
+                appSharedViewModel.numberOfItems = 6
+            }
+            Toast.makeText(activity, "number of items set", Toast.LENGTH_SHORT).show()
+        }
+        binding.buttonSetTheme.setOnClickListener {
+            if (binding.radioButtonBlack.isChecked) {
+                appSharedViewModel.colorTheme = ThemeColor.Black
+            } else if (binding.radioButtonRed.isChecked) {
+                appSharedViewModel.colorTheme = ThemeColor.Red
+            } else {
+                appSharedViewModel.colorTheme = ThemeColor.Purple
+            }
+            Toast.makeText(activity, "theme color set", Toast.LENGTH_SHORT).show()
+        }
+
         binding.buttonEditInfo.setOnClickListener {
             findNavController().navigate(R.id.action_settingFragment_to_registrationFragment)
         }
     }
 
-    private fun setItemsNumberButtonsListeners(){
-        for (i in 0..5)
-            itemsNumberButtonList[i].setOnClickListener {
-                appSharedViewModel.numberOfItems=i+1
-            }
-    }
 
-    private fun setThemeButtonsListeners(){
-        binding.radioButtonBlack.setOnClickListener { appSharedViewModel.colorTheme=ThemeColor.Black }
-        binding.radioButtonRed.setOnClickListener { appSharedViewModel.colorTheme=ThemeColor.Red }
-        binding.radioButtonPurple.setOnClickListener { appSharedViewModel.colorTheme=ThemeColor.Purple }
-    }
 
-    private fun createButtonsArrays() {
+
+   /* fun createItemNumbersButtonArray() {
         itemsNumberButtonList.add(binding.radioButton1)
         itemsNumberButtonList.add(binding.radioButton2)
         itemsNumberButtonList.add(binding.radioButton3)
         itemsNumberButtonList.add(binding.radioButton4)
         itemsNumberButtonList.add(binding.radioButton5)
         itemsNumberButtonList.add(binding.radioButton6)
-    }
+    }*/
 
 }

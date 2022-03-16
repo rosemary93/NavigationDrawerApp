@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.fragment.app.activityViewModels
+import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentHomeBinding
 
 
@@ -38,6 +39,13 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createViewsArrays()
+        for (i in 0..5)
+        {
+            Glide.with(requireContext())
+                .load(R.drawable.river)
+                .circleCrop()
+                .into(imageViewList[i])
+        }
     }
 
     fun createViewsArrays(){
