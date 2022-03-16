@@ -12,8 +12,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_gravity="center"
         tools:src="@tools:sample/avatars" />
 
     <TextView
@@ -22,6 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/round_corner_shape"
+        android:padding="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:text="Name" />
@@ -32,6 +35,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/round_corner_shape"
+        android:padding="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:text="National ID" />
@@ -42,6 +47,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:background="@drawable/round_corner_shape"
+        android:padding="10dp"
         android:textSize="24sp"
         android:textStyle="bold"
         tools:text="Phone" />

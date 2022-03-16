@@ -22,17 +22,21 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setNavigationDrawer()
 
+    }
+
+    private fun setNavigationDrawer() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController
         val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         appBarConfiguration = AppBarConfiguration( navController.graph, drawerLayout)
-        //appBarConfiguration = AppBarConfiguration( findNavController(R.id.nav_host_fragment).graph, drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         findViewById<NavigationView>(R.id.nav_view)
             .setupWithNavController(navController)
     }
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         return true
     }
