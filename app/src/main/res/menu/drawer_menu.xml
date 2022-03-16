@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item
-        android:id="@+id/item_home"
-        android:icon="@drawable/ic_baseline_home_24"
-        android:title="Home"
-        android:visible="true" />
-    <item
-        android:id="@+id/title_profile"
-        android:icon="@drawable/ic_baseline_person_24"
-        android:title="Profile" />
-    <item
-        android:id="@+id/title_setting"
-        android:icon="@drawable/ic_baseline_settings_24"
-        android:title="Setting" />
-    <item
-        android:id="@+id/title_exit"
-        android:icon="@drawable/ic_baseline_exit_to_app_24"
-        android:title="Exit" />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@id/homeFragment"
+            android:icon="@drawable/ic_baseline_home_24"
+            android:title="Home"
+            android:visible="true" />
+        <item
+            android:id="@id/profileFragment"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="Profile" />
+        <item
+            android:id="@id/settingFragment"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="Setting" />
+        <item
+            android:id="@+id/title_exit"
+            android:icon="@drawable/ic_baseline_exit_to_app_24"
+            android:title="Exit" />
+    </group>
 </menu>
