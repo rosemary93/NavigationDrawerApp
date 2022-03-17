@@ -22,7 +22,7 @@
             android:id="@+id/imageView_1"
             android:layout_width="150dp"
             android:layout_height="126dp"
-            android:src="@drawable/river"
+            android:src="@drawable/tj"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -50,7 +50,7 @@
             android:id="@+id/imageView_2"
             android:layout_width="150dp"
             android:layout_height="126dp"
-            android:src="@drawable/river"
+            android:src="@drawable/sspol"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -78,7 +78,7 @@
             android:id="@+id/imageView_3"
             android:layout_width="150dp"
             android:layout_height="126dp"
-            android:src="@drawable/river"
+            android:src="@drawable/fin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -106,7 +106,7 @@
             android:id="@+id/imageView_4"
             android:layout_width="150dp"
             android:layout_height="126dp"
-            android:src="@drawable/river"
+            android:src="@drawable/nasirmmosque"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -134,7 +134,7 @@
             android:id="@+id/imageView_5"
             android:layout_width="150dp"
             android:layout_height="126dp"
-            android:src="@drawable/river"
+            android:src="@drawable/bakheram"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -162,7 +162,7 @@
             android:id="@+id/imageView_6"
             android:layout_width="150dp"
             android:layout_height="126dp"
-            android:src="@drawable/river"
+            android:src="@drawable/badabspring"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
