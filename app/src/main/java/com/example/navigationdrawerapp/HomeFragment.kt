@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,14 +17,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentHomeBinding
+import com.google.gson.Gson
 
+const val SHARED_PREFERENCE_NAME = "appInfo"
 
 class HomeFragment : Fragment() {
-    lateinit var binding:FragmentHomeBinding
-    val layoutList=ArrayList<ConstraintLayout>()
-    val textViewList=ArrayList<TextView>()
-    val imageViewList=ArrayList<ImageView>()
-    private val appSharedViewModel:SharedViewModelApp by activityViewModels()
+    lateinit var binding: FragmentHomeBinding
+    val layoutList = ArrayList<ConstraintLayout>()
+    val textViewList = ArrayList<TextView>()
+    val imageViewList = ArrayList<ImageView>()
+    private val appSharedViewModel: SharedViewModelApp by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,7 +38,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding= FragmentHomeBinding.inflate(layoutInflater,container,false)
+        binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
         if (appSharedViewModel.colorTheme == ThemeColor.Black) {
             activity?.setTheme(R.style.Theme_NavigationDrawerAppBlack)
         } else if (appSharedViewModel.colorTheme == ThemeColor.Red) {
@@ -48,58 +51,68 @@ class HomeFragment : Fragment() {
     }
 
 
-
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createViewsArrays()
         initViews()
 
 
-
-        for (i in 0..5)
-        {
+        for (i in 0..5) {
             imageViewList[i].setOnClickListener {
-                val action=HomeFragmentDirections.actionHomeFragmentToItemDetailsFragment(i)
+                val action = HomeFragmentDirections.actionHomeFragmentToItemDetailsFragment(i)
                 findNavController().navigate(action)
             }
         }
 
-       /* if (appSharedViewModel.isInAnotherFragment){
-
-        }*/
-
-
 
     }
 
-    fun initViews(){
-        for (i in 0..5)
-        {
-            textViewList[i].text=appSharedViewModel.itemList[i].title
+
+
+    private fun initViews() {
+        for (i in 0..5) {
+            textViewList[i].text = appSharedViewModel.itemList[i].title
             imageViewList[i].setImageResource(appSharedViewModel.itemList[i].imageId)
             Glide.with(requireContext())
                 .load(appSharedViewModel.itemList[i].imageId)
-                .circleCrop()
                 .into(imageViewList[i])
         }
-        for (i in 0..5)
-        {
-            if (i<appSharedViewModel.numberOfItems)
+        for (i in 0..5) {
+            if (i < appSharedViewModel.numberOfItems)
                 continue
-            layoutList[i].visibility=View.GONE
+            layoutList[i].visibility = View.GONE
 
         }
     }
 
+    override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+        val inflater = super.onGetLayoutInflater(savedInstanceState)
+        lateinit var contextThemeWrapper: Context
+        when (appSharedViewModel.colorTheme) {
+            ThemeColor.Red -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerAppRed)
+            }
+            ThemeColor.Black -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerAppBlack)
+            }
+            else -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerApp)
+            }
+        }
+        return inflater.cloneInContext(contextThemeWrapper)
+    }
 
 
-    fun createViewsArrays(){
+    fun createViewsArrays() {
         createLayoutArray()
         createTextViewArray()
         createImageViewArray()
     }
-    private fun createLayoutArray(){
+
+    private fun createLayoutArray() {
         layoutList.add(binding.constrLayout1)
         layoutList.add(binding.constrLayout2)
         layoutList.add(binding.constrLayout3)
@@ -107,8 +120,8 @@ class HomeFragment : Fragment() {
         layoutList.add(binding.constrLayout5)
         layoutList.add(binding.constrLayout6)
     }
-    private fun createTextViewArray()
-    {
+
+    private fun createTextViewArray() {
         textViewList.add(binding.textView1)
         textViewList.add(binding.textView2)
         textViewList.add(binding.textView3)
@@ -117,7 +130,7 @@ class HomeFragment : Fragment() {
         textViewList.add(binding.textView6)
     }
 
-    private fun createImageViewArray(){
+    private fun createImageViewArray() {
         imageViewList.add(binding.imageView1)
         imageViewList.add(binding.imageView2)
         imageViewList.add(binding.imageView3)
@@ -125,7 +138,6 @@ class HomeFragment : Fragment() {
         imageViewList.add(binding.imageView5)
         imageViewList.add(binding.imageView6)
     }
-
 
 
 }

@@ -10,6 +10,7 @@ class SharedViewModelApp:ViewModel() {
     var user:User?=null
     val itemList=ArrayList<Item>()
     var isInAnotherFragment=false
+
     init {
         numberOfItems=6
         itemList.add(Item("Takhte Jamshid","Takhte Jamshid is in Shiraz",R.drawable.tj))
@@ -26,6 +27,9 @@ class SharedViewModelApp:ViewModel() {
 }
 data class User(var name:String, var nationalID:String, var phone:String)
 data class Item(var title:String, var description:String, var imageId:Int)
+data class appInfos(var numberOfItems:Int,var themeColor: ThemeColor){
+    val user:User?=null
+}
 enum class ThemeColor{
     Black,Red,Purple
 }

@@ -53,4 +53,11 @@
         android:textStyle="bold"
         tools:text="Phone" />
 
+    <Button
+        android:id="@+id/button_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:text="back" />
+
 </LinearLayout>

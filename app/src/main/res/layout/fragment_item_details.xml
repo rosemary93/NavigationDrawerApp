@@ -11,7 +11,7 @@
     tools:context=".ItemDetailsFragment">
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView_item"
         android:layout_width="151dp"
         android:layout_height="155dp"
@@ -33,4 +33,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="10sp"
         android:text="TextView" />
+
+    <Button
+        android:id="@+id/button_back_idf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:text="back" />
 </LinearLayout>

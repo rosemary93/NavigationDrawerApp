@@ -1,8 +1,10 @@
 package com.example.navigationdrawerapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -42,11 +44,13 @@ class ItemDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         Glide.with(requireContext())
             .load(appSharedViewModel.itemList[index].imageId)
-            .circleCrop()
             .into(binding.imageViewItem)
         binding.textViewTitle.text=appSharedViewModel.itemList[index].title
         binding.textViewDescription.text=appSharedViewModel.itemList[index].description
         binding.imageViewItem.setImageResource(appSharedViewModel.itemList[index].imageId)
+        binding.buttonBackIdf.setOnClickListener {
+            findNavController().navigate(R.id.action_itemDetailsFragment_to_homeFragment)
+        }
     }
 
 
@@ -72,5 +76,25 @@ class ItemDetailsFragment : Fragment() {
 
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+        val inflater = super.onGetLayoutInflater(savedInstanceState)
+        lateinit var contextThemeWrapper: Context
+        when (appSharedViewModel.colorTheme) {
+            ThemeColor.Red -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerAppRed)
+            }
+            ThemeColor.Black -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerAppBlack)
+            }
+            else -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerApp)
+            }
+        }
+        return inflater.cloneInContext(contextThemeWrapper)
     }
 }

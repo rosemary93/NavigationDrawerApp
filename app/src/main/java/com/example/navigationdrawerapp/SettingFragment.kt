@@ -1,5 +1,6 @@
 package com.example.navigationdrawerapp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawerapp.databinding.FragmentSettingBinding
@@ -30,14 +32,6 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSettingBinding.inflate(layoutInflater, container, false)
-        if (appSharedViewModel.colorTheme == ThemeColor.Black) {
-            activity?.setTheme(R.style.Theme_NavigationDrawerAppBlack)
-        } else if (appSharedViewModel.colorTheme == ThemeColor.Red) {
-            activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
-
-        } else {
-            activity?.setTheme(R.style.Theme_NavigationDrawerApp)
-        }
         return binding.root
     }
 
@@ -98,7 +92,6 @@ class SettingFragment : Fragment() {
                 appSharedViewModel.colorTheme = ThemeColor.Red
             } else {
                 appSharedViewModel.colorTheme = ThemeColor.Purple
-                activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
             }
             Toast.makeText(activity, "theme color set", Toast.LENGTH_SHORT).show()
             findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
@@ -108,16 +101,29 @@ class SettingFragment : Fragment() {
         binding.buttonEditInfo.setOnClickListener {
             findNavController().navigate(R.id.action_settingFragment_to_registrationFragment)
         }
+        binding.buttonBackSetting.setOnClickListener {
+            findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
+        }
     }
 
-
-    /* fun createItemNumbersButtonArray() {
-         itemsNumberButtonList.add(binding.radioButton1)
-         itemsNumberButtonList.add(binding.radioButton2)
-         itemsNumberButtonList.add(binding.radioButton3)
-         itemsNumberButtonList.add(binding.radioButton4)
-         itemsNumberButtonList.add(binding.radioButton5)
-         itemsNumberButtonList.add(binding.radioButton6)
-     }*/
+    override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
+        val inflater = super.onGetLayoutInflater(savedInstanceState)
+        lateinit var contextThemeWrapper: Context
+        when (appSharedViewModel.colorTheme) {
+            ThemeColor.Red -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerAppRed)
+            }
+            ThemeColor.Black -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerAppBlack)
+            }
+            else -> {
+                contextThemeWrapper =
+                    ContextThemeWrapper(requireContext(), R.style.Theme_NavigationDrawerApp)
+            }
+        }
+        return inflater.cloneInContext(contextThemeWrapper)
+    }
 
 }
