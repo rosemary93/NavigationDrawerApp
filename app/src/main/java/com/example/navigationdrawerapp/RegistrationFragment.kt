@@ -46,6 +46,7 @@ class RegistrationFragment : Fragment() {
                 appSharedViewModel.user= User(binding.editTextName.text.toString(),
                 binding.editTextNationalId.text.toString(),
                 binding.editTextPhone.text.toString())
+            findNavController().navigate(R.id.action_registrationFragment_to_homeFragment)
 
         }
     }
