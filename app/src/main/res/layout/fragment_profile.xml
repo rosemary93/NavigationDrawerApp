@@ -10,7 +10,7 @@
     tools:context=".ProfileFragment">
 
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/imageView"
         android:layout_width="100sp"
         android:layout_height="100sp"
