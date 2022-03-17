@@ -29,6 +29,7 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSettingBinding.inflate(layoutInflater, container, false)
+        activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
         return binding.root
     }
 
@@ -88,6 +89,7 @@ class SettingFragment : Fragment() {
                 appSharedViewModel.colorTheme = ThemeColor.Red
             } else {
                 appSharedViewModel.colorTheme = ThemeColor.Purple
+                activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
             }
             Toast.makeText(activity, "theme color set", Toast.LENGTH_SHORT).show()
         }

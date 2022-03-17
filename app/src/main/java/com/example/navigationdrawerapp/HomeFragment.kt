@@ -1,5 +1,6 @@
 package com.example.navigationdrawerapp
 
+import android.content.Context
 import android.os.Bundle
 import android.text.Layout
 import androidx.fragment.app.Fragment
@@ -10,6 +11,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
@@ -43,13 +45,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         createViewsArrays()
-        for (i in 0..5)
-        {
-            Glide.with(requireContext())
-                .load(R.drawable.river)
-                .circleCrop()
-                .into(imageViewList[i])
-        }
+        initViews()
+
+
 
         for (i in 0..5)
         {
@@ -59,10 +57,25 @@ class HomeFragment : Fragment() {
             }
         }
 
+       /* if (appSharedViewModel.isInAnotherFragment){
+
+        }*/
+
 
 
     }
 
+    fun initViews(){
+        for (i in 0..5)
+        {
+            textViewList[i].text=appSharedViewModel.itemList[i].title
+            imageViewList[i].setImageResource(appSharedViewModel.itemList[i].imageId)
+            Glide.with(requireContext())
+                .load(R.drawable.river)
+                .circleCrop()
+                .into(imageViewList[i])
+        }
+    }
 
 
 
@@ -111,3 +124,22 @@ class HomeFragment : Fragment() {
 
 
 }
+/*
+class MyDrawerListener: DrawerLayout.DrawerListener {
+
+    override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDrawerOpened(drawerView: View) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onDrawerClosed(drawerView: View) {
+
+    }
+
+    override fun onDrawerStateChanged(newState: Int) {
+        TODO("Not yet implemented")
+    }
+}*/
