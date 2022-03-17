@@ -16,6 +16,7 @@ import com.example.navigationdrawerapp.databinding.FragmentSettingBinding
 class SettingFragment : Fragment() {
     lateinit var binding: FragmentSettingBinding
     private val appSharedViewModel: SharedViewModelApp by activityViewModels()
+
     //private val itemsNumberButtonList = ArrayList<Button>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +30,14 @@ class SettingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSettingBinding.inflate(layoutInflater, container, false)
-        activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
+        if (appSharedViewModel.colorTheme == ThemeColor.Black) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppBlack)
+        } else if (appSharedViewModel.colorTheme == ThemeColor.Red) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
+
+        } else {
+            activity?.setTheme(R.style.Theme_NavigationDrawerApp)
+        }
         return binding.root
     }
 
@@ -81,6 +89,7 @@ class SettingFragment : Fragment() {
                 appSharedViewModel.numberOfItems = 6
             }
             Toast.makeText(activity, "number of items set", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
         }
         binding.buttonSetTheme.setOnClickListener {
             if (binding.radioButtonBlack.isChecked) {
@@ -92,6 +101,8 @@ class SettingFragment : Fragment() {
                 activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
             }
             Toast.makeText(activity, "theme color set", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
+
         }
 
         binding.buttonEditInfo.setOnClickListener {
@@ -100,15 +111,13 @@ class SettingFragment : Fragment() {
     }
 
 
-
-
-   /* fun createItemNumbersButtonArray() {
-        itemsNumberButtonList.add(binding.radioButton1)
-        itemsNumberButtonList.add(binding.radioButton2)
-        itemsNumberButtonList.add(binding.radioButton3)
-        itemsNumberButtonList.add(binding.radioButton4)
-        itemsNumberButtonList.add(binding.radioButton5)
-        itemsNumberButtonList.add(binding.radioButton6)
-    }*/
+    /* fun createItemNumbersButtonArray() {
+         itemsNumberButtonList.add(binding.radioButton1)
+         itemsNumberButtonList.add(binding.radioButton2)
+         itemsNumberButtonList.add(binding.radioButton3)
+         itemsNumberButtonList.add(binding.radioButton4)
+         itemsNumberButtonList.add(binding.radioButton5)
+         itemsNumberButtonList.add(binding.radioButton6)
+     }*/
 
 }

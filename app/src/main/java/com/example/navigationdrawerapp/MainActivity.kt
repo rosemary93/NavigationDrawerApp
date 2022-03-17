@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.annotation.NonNull
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         setNavigationDrawer()
 
     }
+
 
     private fun setNavigationDrawer() {
         val navHostFragment =

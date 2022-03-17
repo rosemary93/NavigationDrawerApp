@@ -26,6 +26,14 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentProfileBinding.inflate(layoutInflater, container, false)
+        if (appSharedViewModel.colorTheme == ThemeColor.Black) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppBlack)
+        } else if (appSharedViewModel.colorTheme == ThemeColor.Red) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
+
+        } else {
+            activity?.setTheme(R.style.Theme_NavigationDrawerApp)
+        }
         return binding.root
     }
 
@@ -43,9 +51,9 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initViews() {
-        binding.textViewName.text = appSharedViewModel.user?.name
-        binding.textViewNationalID.text = appSharedViewModel.user?.nationalID
-        binding.textViewPhone.text = appSharedViewModel.user?.phone
+        binding.textViewName.text = "name : "+appSharedViewModel.user?.name
+        binding.textViewNationalID.text ="national ID: "+ appSharedViewModel.user?.nationalID
+        binding.textViewPhone.text ="phone: "+  appSharedViewModel.user?.phone
     }
 
 }

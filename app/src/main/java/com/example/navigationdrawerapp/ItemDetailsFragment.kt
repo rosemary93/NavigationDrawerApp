@@ -27,6 +27,14 @@ class ItemDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding= FragmentItemDetailsBinding.inflate(layoutInflater,container,false)
+        if (appSharedViewModel.colorTheme == ThemeColor.Black) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppBlack)
+        } else if (appSharedViewModel.colorTheme == ThemeColor.Red) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
+
+        } else {
+            activity?.setTheme(R.style.Theme_NavigationDrawerApp)
+        }
         return binding.root
     }
 

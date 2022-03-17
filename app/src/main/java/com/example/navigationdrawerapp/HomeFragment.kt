@@ -36,6 +36,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding= FragmentHomeBinding.inflate(layoutInflater,container,false)
+        if (appSharedViewModel.colorTheme == ThemeColor.Black) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppBlack)
+        } else if (appSharedViewModel.colorTheme == ThemeColor.Red) {
+            activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
+
+        } else {
+            activity?.setTheme(R.style.Theme_NavigationDrawerApp)
+        }
         return binding.root
     }
 
@@ -71,9 +79,16 @@ class HomeFragment : Fragment() {
             textViewList[i].text=appSharedViewModel.itemList[i].title
             imageViewList[i].setImageResource(appSharedViewModel.itemList[i].imageId)
             Glide.with(requireContext())
-                .load(R.drawable.river)
+                .load(appSharedViewModel.itemList[i].imageId)
                 .circleCrop()
                 .into(imageViewList[i])
+        }
+        for (i in 0..5)
+        {
+            if (i<appSharedViewModel.numberOfItems)
+                continue
+            layoutList[i].visibility=View.GONE
+
         }
     }
 
@@ -111,16 +126,6 @@ class HomeFragment : Fragment() {
         imageViewList.add(binding.imageView6)
     }
 
-    override fun onResume() {
-        for (i in 0..5)
-        {
-            if (i<appSharedViewModel.numberOfItems)
-                continue
-            layoutList[i].visibility=View.GONE
-
-        }
-        super.onResume()
-    }
 
 
 }
