@@ -2,7 +2,6 @@ package com.example.navigationdrawerapp
 
 import android.content.Context
 import android.os.Bundle
-import android.text.Layout
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,13 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentHomeBinding
-import com.google.gson.Gson
 
 const val SHARED_PREFERENCE_NAME = "appInfo"
 
