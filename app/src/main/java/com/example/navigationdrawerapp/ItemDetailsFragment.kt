@@ -1,11 +1,11 @@
 package com.example.navigationdrawerapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentItemDetailsBinding
 
@@ -19,6 +19,7 @@ class ItemDetailsFragment : Fragment() {
         arguments?.let {
         index=it.getInt("index")
         }
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -41,4 +42,27 @@ class ItemDetailsFragment : Fragment() {
     }
 
 
+    //for adding menu and set items listeners
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.share_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.title_share -> {
+                val sendIntent: Intent = Intent().apply {
+                    action = Intent.ACTION_SEND
+                    val titleAndDescrption=appSharedViewModel.itemList[index].title + "\n"+appSharedViewModel.itemList[index].description
+                    putExtra(Intent.EXTRA_TEXT, titleAndDescrption)
+                    type = "text/plain"
+                }
+                val shareIntent = Intent.createChooser(sendIntent, null)
+                startActivity(shareIntent)
+                return true
+            }
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
