@@ -15,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentHomeBinding
 
-const val SHARED_PREFERENCE_NAME = "appInfo"
+//const val SHARED_PREFERENCE_NAME = "appInfo"
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
