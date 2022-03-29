@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_settingFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_settingFragment_to_editAccountFragment"
+            app:destination="@id/editAccountFragment" />
     </fragment>
     <fragment
         android:id="@+id/registrationFragment"
@@ -65,4 +68,14 @@
         android:name="com.example.navigationdrawerapp.ExitFragment"
         android:label="fragment_exit"
         tools:layout="@layout/fragment_exit" />
+    <fragment
+        android:id="@+id/editAccountFragment"
+        android:name="com.example.navigationdrawerapp.EditAccountFragment"
+        android:label="fragment_edit_account"
+        tools:layout="@layout/fragment_edit_account" />
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="com.example.navigationdrawerapp.AccountDetailsFragment"
+        android:label="fragment_account_details"
+        tools:layout="@layout/fragment_account_details" />
 </navigation>

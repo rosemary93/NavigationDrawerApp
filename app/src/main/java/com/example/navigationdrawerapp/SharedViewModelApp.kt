@@ -1,7 +1,5 @@
 package com.example.navigationdrawerapp
 
-import android.content.Context
-import android.widget.ImageView
 import androidx.lifecycle.ViewModel
 
 class SharedViewModelApp:ViewModel() {
@@ -9,7 +7,7 @@ class SharedViewModelApp:ViewModel() {
     var colorTheme=ThemeColor.Purple
     var user:User?=null
     val itemList=ArrayList<Item>()
-    var isInAnotherFragment=false
+    val accountList=ArrayList<Account>()
 
     init {
         numberOfItems=6
@@ -20,9 +18,7 @@ class SharedViewModelApp:ViewModel() {
         itemList.add(Item("Baghe-e-eram","Baghe-e-eram is in Shiraz",R.drawable.bakheram))
         itemList.add(Item("Badab-surt-spring","Badab-surt-spring is in Mazandaran",R.drawable.badabspring))
     }
-    /*fun loadImages(context: Context, imageView: ImageView, index:Int) {
 
-    }*/
 
 }
 data class User(var name:String, var nationalID:String, var phone:String)
@@ -30,6 +26,7 @@ data class Item(var title:String, var description:String, var imageId:Int)
 data class appInfos(var numberOfItems:Int,var themeColor: ThemeColor){
     val user:User?=null
 }
+data class Account(var cardNumber:Int,var accountNumber:Int,var SHABA:Int)
 enum class ThemeColor{
     Black,Red,Purple
 }
