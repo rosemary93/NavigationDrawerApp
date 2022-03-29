@@ -21,9 +21,9 @@ class EditAccountFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View{
         binding= FragmentEditAccountBinding.inflate(inflater,container,false)
-        return inflater.inflate(R.layout.fragment_edit_account, container, false)
+        return binding.root
     }
 
 

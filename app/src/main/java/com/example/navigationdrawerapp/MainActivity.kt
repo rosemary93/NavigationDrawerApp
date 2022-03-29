@@ -1,5 +1,6 @@
 package com.example.navigationdrawerapp
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -52,7 +53,23 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    override fun onResume() {
-        super.onResume()
+    /*fun setDataInSharedPref(person: Person) {
+        val sharedPreference =
+            this.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        val gson = Gson()
+        val stringJson = gson.toJson(person)
+        editor.putString("person", stringJson)
+        editor.apply()
     }
+
+    fun getDataFromSharedPref(): Person {
+        val sharedPreference =
+            this.getSharedPreferences(SHARED_PREFERENCE_NAME, Context.MODE_PRIVATE)
+        val gson = Gson()
+        val stringJson = sharedPreference.getString("person", "")
+        return gson.fromJson(stringJson, Person::class.java)
+    }*/
+
+
 }
