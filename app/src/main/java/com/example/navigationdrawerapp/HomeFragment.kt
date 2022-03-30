@@ -1,11 +1,13 @@
 package com.example.navigationdrawerapp
 
+import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.ContextThemeWrapper
@@ -14,6 +16,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentHomeBinding
+import kotlin.random.Random
 
 //const val SHARED_PREFERENCE_NAME = "appInfo"
 
@@ -35,14 +38,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        if (appSharedViewModel.colorTheme == ThemeColor.Black) {
+       /* if (appSharedViewModel.colorTheme == ThemeColor.Black) {
             activity?.setTheme(R.style.Theme_NavigationDrawerAppBlack)
         } else if (appSharedViewModel.colorTheme == ThemeColor.Red) {
             activity?.setTheme(R.style.Theme_NavigationDrawerAppRed)
 
         } else {
             activity?.setTheme(R.style.Theme_NavigationDrawerApp)
-        }
+        }*/
         return binding.root
     }
 
@@ -51,6 +54,12 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         createViewsArrays()
         initViews()
+
+
+
+        val text = appSharedViewModel.dayTips[Random.nextInt(0,6)]
+
+
 
 
         for (i in 0..5) {
