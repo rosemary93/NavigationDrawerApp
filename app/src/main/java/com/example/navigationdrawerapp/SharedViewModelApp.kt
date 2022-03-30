@@ -26,7 +26,9 @@ data class Item(var title:String, var description:String, var imageId:Int)
 data class appInfos(var numberOfItems:Int,var themeColor: ThemeColor){
     val user:User?=null
 }
-data class Account(var cardNumber:Int,var accountNumber:Int,var SHABA:Int)
+data class Account(var cardNumber:String,var accountNumber:String,var SHABA:String){
+    var bank:String=""
+}
 enum class ThemeColor{
     Black,Red,Purple
 }

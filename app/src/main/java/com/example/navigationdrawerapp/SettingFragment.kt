@@ -101,9 +101,31 @@ class SettingFragment : Fragment() {
         binding.buttonEditInfo.setOnClickListener {
             findNavController().navigate(R.id.action_settingFragment_to_registrationFragment)
         }
+
+        binding.buttonMelliS.setOnClickListener {
+        val action=SettingFragmentDirections.actionSettingFragmentToEditAccountFragment("melli")
+            findNavController().navigate(action)
+        }
+        binding.buttonMellatS.setOnClickListener {
+            val action=SettingFragmentDirections.actionSettingFragmentToEditAccountFragment("mellat")
+            findNavController().navigate(action)
+        }
+        binding.buttonParsianS.setOnClickListener {
+            val action=SettingFragmentDirections.actionSettingFragmentToEditAccountFragment("parsian")
+            findNavController().navigate(action)
+        }
+        binding.buttonTejaratS.setOnClickListener {
+            val action=SettingFragmentDirections.actionSettingFragmentToEditAccountFragment("tejarat")
+            findNavController().navigate(action)
+        }
+
+
+
         binding.buttonBackSetting.setOnClickListener {
             findNavController().navigate(R.id.action_settingFragment_to_homeFragment)
         }
+
+
     }
 
     override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
