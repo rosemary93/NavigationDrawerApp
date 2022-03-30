@@ -54,10 +54,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         createViewsArrays()
         initViews()
-
-
-
-        val text = appSharedViewModel.dayTips[Random.nextInt(0,6)]
+        binding.textViewDayTips.text = appSharedViewModel.dayTips[Random.nextInt(0,6)]
 
 
 
