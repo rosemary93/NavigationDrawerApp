@@ -28,6 +28,7 @@
         android:textSize="20sp" />
 
     <RadioGroup
+        android:id="@+id/radiogorup_bank"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5sp"
@@ -85,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="1"
+            android:maxLength="4"
             android:background="@drawable/round_corner_shape"
             android:ems="10"
             android:gravity="center"
@@ -98,6 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="1"
+            android:maxLength="4"
             android:background="@drawable/round_corner_shape"
             android:ems="10"
             android:inputType="number"
@@ -110,6 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="1"
+            android:maxLength="4"
             android:background="@drawable/round_corner_shape"
             android:ems="10"
             android:gravity="center"
@@ -123,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5sp"
             android:layout_weight="1"
+            android:maxLength="4"
             android:background="@drawable/round_corner_shape"
             android:ems="10"
             android:gravity="center"
@@ -147,6 +152,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/round_corner_shape"
         android:ems="10"
+        android:maxLength="12"
         android:inputType="number"
         android:padding="10sp"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
@@ -162,12 +168,13 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/editTextNumber6"
+        android:id="@+id/editTextNumber_shaba"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:background="@drawable/round_corner_shape"
         android:inputType="number"
+        android:maxLength="24"
         android:padding="10sp"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
@@ -178,7 +185,7 @@
         android:layout_marginStart="60sp"
         android:layout_marginTop="20sp"
         android:layout_marginEnd="60sp"
-        android:layout_marginBottom="30sp"
+        android:layout_marginBottom="10sp"
         android:text="save" />
 
     <Button
