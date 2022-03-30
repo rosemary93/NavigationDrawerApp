@@ -85,5 +85,9 @@
         android:id="@+id/accountDetailsFragment"
         android:name="com.example.navigationdrawerapp.AccountDetailsFragment"
         android:label="fragment_account_details"
-        tools:layout="@layout/fragment_account_details" />
+        tools:layout="@layout/fragment_account_details" >
+        <action
+            android:id="@+id/action_accountDetailsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

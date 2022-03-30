@@ -104,7 +104,7 @@ class EditAccountFragment : Fragment() {
 
     }
 
-    fun getDataFromShared(bank: String): Account? {
+    private fun getDataFromShared(bank: String): Account? {
         val sharedPreference =
             requireActivity().getSharedPreferences("Accounts", Context.MODE_PRIVATE)
         val gson = Gson()
