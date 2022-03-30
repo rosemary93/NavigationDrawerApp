@@ -7,7 +7,7 @@ class SharedViewModelApp:ViewModel() {
     var colorTheme=ThemeColor.Purple
     var user:User?=null
     val itemList=ArrayList<Item>()
-    val accountList=ArrayList<Account>()
+
 
     init {
         numberOfItems=6
@@ -21,7 +21,9 @@ class SharedViewModelApp:ViewModel() {
 
 
 }
-data class User(var name:String, var nationalID:String, var phone:String)
+data class User(var name:String, var nationalID:String, var phone:String){
+    var keepPrivate=false
+}
 data class Item(var title:String, var description:String, var imageId:Int)
 data class appInfos(var numberOfItems:Int,var themeColor: ThemeColor){
     val user:User?=null

@@ -71,7 +71,7 @@
     <fragment
         android:id="@+id/editAccountFragment"
         android:name="com.example.navigationdrawerapp.EditAccountFragment"
-        android:label="fragment_edit_account"
+        android:label="Add/Edit Account"
         tools:layout="@layout/fragment_edit_account">
         <argument
             android:name="bank"
@@ -84,7 +84,7 @@
     <fragment
         android:id="@+id/accountDetailsFragment"
         android:name="com.example.navigationdrawerapp.AccountDetailsFragment"
-        android:label="fragment_account_details"
+        android:label="Accounts"
         tools:layout="@layout/fragment_account_details" >
         <action
             android:id="@+id/action_accountDetailsFragment_to_homeFragment"

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -43,7 +44,14 @@ class ProfileFragment : Fragment() {
         if (appSharedViewModel.user == null) {
             findNavController().navigate(R.id.action_profileFragment_to_registrationFragment)
         }
-        initViews()
+        if (appSharedViewModel.user?.keepPrivate == true){
+            binding.LlayoutUserInfo.visibility=View.GONE
+            Toast.makeText(requireContext(),"Sorry user info is private",Toast.LENGTH_SHORT).show()
+        }else{
+            initViews()
+            binding.LlayoutUserInfo.visibility=View.VISIBLE
+        }
+
         binding.buttonBack.setOnClickListener {
             findNavController().navigate(R.id.action_profileFragment_to_homeFragment)
         }
