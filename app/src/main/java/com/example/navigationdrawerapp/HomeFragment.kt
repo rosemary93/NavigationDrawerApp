@@ -3,6 +3,7 @@ package com.example.navigationdrawerapp
 import android.animation.ValueAnimator
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +23,10 @@ import kotlin.random.Random
 
 class HomeFragment : Fragment() {
     lateinit var binding: FragmentHomeBinding
+    var mText=""
+    var mIndex=0
+    var mDelay=0L
+
     val layoutList = ArrayList<ConstraintLayout>()
     val textViewList = ArrayList<TextView>()
     val imageViewList = ArrayList<ImageView>()
@@ -54,8 +59,8 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         createViewsArrays()
         initViews()
-        binding.textViewDayTips.text = appSharedViewModel.dayTips[Random.nextInt(0,6)]
-
+        setCharacterDelay(150)
+        animateText(appSharedViewModel.dayTips[Random.nextInt(0,6)])
 
 
 
@@ -139,6 +144,28 @@ class HomeFragment : Fragment() {
         imageViewList.add(binding.imageView4)
         imageViewList.add(binding.imageView5)
         imageViewList.add(binding.imageView6)
+    }
+
+    private val mHandler = Handler()
+    private val characterAdder: Runnable = object : Runnable {
+        override fun run() {
+            binding.textViewDayTips.setText(mText.subSequence(0, mIndex++))
+            if (mIndex <= mText.length) {
+                mHandler.postDelayed(this, mDelay)
+            }
+        }
+    }
+
+    fun animateText(text: CharSequence) {
+        mText = text as String
+        mIndex = 0
+        binding.textViewDayTips.setText("")
+        mHandler.removeCallbacks(characterAdder)
+        mHandler.postDelayed(characterAdder, mDelay)
+    }
+
+    fun setCharacterDelay(millis: Long) {
+        mDelay = millis
     }
 
 
