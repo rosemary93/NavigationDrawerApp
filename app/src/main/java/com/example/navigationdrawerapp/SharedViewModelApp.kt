@@ -30,7 +30,7 @@ class SharedViewModelApp:ViewModel() {
 
 }
 data class User(var name:String, var nationalID:String, var phone:String){
-    var keepPrivate=false
+     var keepPrivate=false
 }
 data class Item(var title:String, var description:String, var imageId:Int)
 data class appInfos(var numberOfItems:Int,var themeColor: ThemeColor){

@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.navigationdrawerapp.databinding.FragmentProfileBinding
+import com.google.gson.Gson
 
 
 class ProfileFragment : Fragment() {
@@ -41,10 +42,10 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (appSharedViewModel.user == null) {
+        if (getUserDataFromShared() == null) {
             findNavController().navigate(R.id.action_profileFragment_to_registrationFragment)
         }
-        if (appSharedViewModel.user?.keepPrivate == true){
+        if (getUserDataFromShared()?.keepPrivate == true){
             binding.LlayoutUserInfo.visibility=View.GONE
             Toast.makeText(requireContext(),"Sorry user info is private",Toast.LENGTH_SHORT).show()
         }else{
@@ -59,12 +60,21 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initViews() {
-        binding.textViewName.text = "name : " + appSharedViewModel.user?.name
-        binding.textViewNationalID.text = "national ID: " + appSharedViewModel.user?.nationalID
-        binding.textViewPhone.text = "phone: " + appSharedViewModel.user?.phone
+        val tempUser=getUserDataFromShared()
+        binding.textViewName.text = "name : " + tempUser?.name
+        binding.textViewNationalID.text = "national ID: " +  tempUser?.nationalID
+        binding.textViewPhone.text = "phone: " +  tempUser?.phone
         Glide.with(requireContext())
             .load(R.drawable.river)
             .into(binding.imageView)
+    }
+
+    private fun getUserDataFromShared(): User? {
+        val sharedPreference =
+            requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val stringJson = sharedPreference.getString("user", "")
+        return gson.fromJson(stringJson, User::class.java)
     }
 
     override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {

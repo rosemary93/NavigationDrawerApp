@@ -138,7 +138,7 @@ class EditAccountFragment : Fragment() {
             binding.editTextNumberAcountNumber.error = "please fill here"
             return false
         }
-        if (binding.editTextNumberAcountNumber.text.length < 5) {
+        if (binding.editTextNumberAcountNumber.text.length < 5) {//13
             binding.editTextNumberAcountNumber.error = "account number is too short"
             return false
         }

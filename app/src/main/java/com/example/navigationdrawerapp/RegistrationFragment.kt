@@ -11,6 +11,7 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.navigationdrawerapp.databinding.FragmentRegistrationBinding
+import com.google.gson.Gson
 
 
 class RegistrationFragment : Fragment() {
@@ -54,6 +55,7 @@ class RegistrationFragment : Fragment() {
                 if (binding.radioButtonYes.isChecked){
                     appSharedViewModel.user!!.keepPrivate=true
                 }
+                setUserDataInShared(appSharedViewModel.user!!)
                 findNavController().navigate(R.id.action_registrationFragment_to_homeFragment)
             }
         }
@@ -64,12 +66,15 @@ class RegistrationFragment : Fragment() {
     }
 
     private fun initViews() {
-        if (appSharedViewModel.user!=null)
+        // (appSharedViewModel.user!=null)
+        val tempUser=getUserDataFromShared()
+        if (tempUser!=null)
         {
-            binding.editTextName.setText(appSharedViewModel.user!!.name)
-            binding.editTextNationalId.setText(appSharedViewModel.user!!.nationalID)
-            binding.editTextPhone.setText(appSharedViewModel.user!!.phone)
-            if (appSharedViewModel.user!!.keepPrivate){
+
+            binding.editTextName.setText(tempUser.name)
+            binding.editTextNationalId.setText(tempUser.nationalID)
+            binding.editTextPhone.setText(tempUser.phone)
+            if (tempUser.keepPrivate ==true){
                 binding.radioButtonYes.isChecked=true
             }else{
                 binding.radioButtonNo.isChecked=true
@@ -104,6 +109,26 @@ class RegistrationFragment : Fragment() {
         }
         return true
     }
+
+    fun setUserDataInShared(user: User) {
+        val sharedPreference =
+            requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val editor = sharedPreference.edit()
+        val gson = Gson()
+        val stringJson = gson.toJson(user)
+        editor.putString("user", stringJson)
+        editor.apply()
+
+    }
+
+    private fun getUserDataFromShared(): User? {
+        val sharedPreference =
+            requireActivity().getSharedPreferences("UserData", Context.MODE_PRIVATE)
+        val gson = Gson()
+        val stringJson = sharedPreference.getString("user", "")
+        return gson.fromJson(stringJson, User::class.java)
+    }
+
 
     override fun onGetLayoutInflater(savedInstanceState: Bundle?): LayoutInflater {
         val inflater = super.onGetLayoutInflater(savedInstanceState)
